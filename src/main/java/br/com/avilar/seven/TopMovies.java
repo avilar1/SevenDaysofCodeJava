@@ -11,9 +11,9 @@ public class TopMovies {
 
 	public static void main(String[] args) throws URISyntaxException, Exception {
 		
-		String key = args[0];
+		String key = args[0];	
 		if (key == null)
-		      throw new IllegalArgumentException("Coloque a key no argumento.");
+		      throw new IllegalArgumentException("Coloque a key no argumento!");
 		
 		String url = "https://imdb-api.com/en/API/Top250Movies/<apiKey>";
 	      URI uri = new URI(url.replace("<apiKey>", key));
