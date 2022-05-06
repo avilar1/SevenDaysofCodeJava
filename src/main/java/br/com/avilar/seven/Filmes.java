@@ -6,12 +6,18 @@ public class Filmes {
 	public String urlImagem;
 	public String nota;
 	public String ano;
+	public String ranking;
 	
 	
-	public Filmes(String titulo, String urlImagem) {
+
+	
+	public Filmes(String titulo, String urlImagem, String nota, String ano, String ranking) {
 
 		this.titulo = titulo;
 		this.urlImagem = urlImagem;
+		this.nota = nota;
+		this.ano = ano;
+		this.ranking = ranking;
 	}
 	public String getTitulo() {
 		return titulo;
@@ -27,6 +33,10 @@ public class Filmes {
 	
 	public String getAno() {
 		return ano;
+	}
+	
+	public String getRanking() {
+		return ranking;
 	}
 	
 

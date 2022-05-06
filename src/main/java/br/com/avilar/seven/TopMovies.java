@@ -14,8 +14,6 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 
-
-
 public class TopMovies{
 
 	public static void main(String[] args) throws URISyntaxException, Exception {
@@ -33,40 +31,48 @@ public class TopMovies{
 	      
 	      String respostaDaRequisicao = response.body();
 	      
-
 	      
 	      String json = respostaDaRequisicao;
 	      
 	      String[] corpo = parseToCorpo(json);
 	      
 	    		   List<String> listaInteira = parseListaInteira(corpo);
-
 	    		   
-	    		   List<String> titulos = filtraOsAtributosPelaLocalizacao(corpo, 3);
+	    		   List<String> titulos = filtraOsAtributosPelaLocalizacao(corpo, 2);
 	    		   List<String> urlImages = filtraOsAtributosPelaLocalizacao(corpo, 5);
+	    		   List<String> notas = filtraOsAtributosPelaLocalizacao(corpo, 7);
+	    		   List<String> ano = filtraOsAtributosPelaLocalizacao(corpo, 4);
+	    		   List<String> ranking = filtraOsAtributosPelaLocalizacao(corpo, 1);
 	    		   
 	    		   
-	    		   List<Filmes> detalhesFilmes = passarDetalhesCadaFilme(titulos, urlImages);
+	    		   List<Filmes> detalhesFilmes = passarDetalhesCadaFilme(titulos, urlImages, notas, ano, ranking);
 	    		   	    		   
-	    		
-	    		   for (int i = 0; i < titulos.size(); i++) {
-	    		    	System.out.print(detalhesFilmes.get(i).getTitulo());
-	    		    	System.out.println(detalhesFilmes.get(i).getUrlImagem());
-	    		    }
-
-		   
+	    		   //imprimeLista(titulos, detalhesFilmes);
+	    		   
+	    		   HTMLGenerator.htmlFilmes(titulos, detalhesFilmes);
+	    		   
 	}
-	private static List<Filmes> passarDetalhesCadaFilme(List<String> titulos, List<String> urlImages) {
+	
+	public static void imprimeLista(List<String> titulos, List<Filmes> detalhesFilmes){
+		
+		for (int i = 0; i < titulos.size(); i++) {
+	    	System.out.print(detalhesFilmes.get(i).getTitulo());
+	    	System.out.println(detalhesFilmes.get(i).getUrlImagem());
+	    }
+		
+	}
+	
+	private static List<Filmes> passarDetalhesCadaFilme(List<String> titulos, List<String> urlImages, List<String> notas, List<String> ano, List<String> ranking ) {
 		
 		List<Filmes> listaFilmes = new ArrayList<>();
-		
+
 		for(int i=0; i<titulos.size(); i++) {
 			listaFilmes.add(
-			          new Filmes(titulos.get(i), urlImages.get(i)));
+			          new Filmes(titulos.get(i), urlImages.get(i), notas.get(i), ano.get(i), ranking.get(i)));
 		}
 		
-
 		return listaFilmes;
+	
 	}
 	private static List<String> filtraOsAtributosPelaLocalizacao(String[] corpo, int i) {
 		
@@ -95,13 +101,11 @@ public class TopMovies{
 
 	private static List<String> parseListaInteira(String[] moviesArray) {
 		
-		return Stream.of(moviesArray).toList();
+		return Stream.of(moviesArray).collect(Collectors.toList());
 	
 		
 	}
 
-
-	
 	
 }
 
