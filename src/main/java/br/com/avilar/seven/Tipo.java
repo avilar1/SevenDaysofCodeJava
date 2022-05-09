@@ -1,6 +1,6 @@
 package br.com.avilar.seven;
 
-public abstract class Tipo {
+public abstract class Tipo implements Content{
 	public String titulo;
 	public String urlImagem;
 	public String nota;

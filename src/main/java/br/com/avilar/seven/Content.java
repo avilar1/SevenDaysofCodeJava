@@ -5,4 +5,5 @@ public interface Content {
     String getUrlImagem();
     String getNota();
     String getAno();
+    String getRanking();
 }

@@ -17,7 +17,7 @@ public static void GeradordeHtml(String html) throws FileNotFoundException, Exce
 	gerarHtml.close();
 }
 
-public static void htmlTipos(List<String> titulos, List<Tipo> detalhesTipo, List<Tipo> detalhesTipo2) throws FileNotFoundException, Exception{
+public static void htmlTipos(List<Tipo> detalhesTipo, List<Tipo> detalhesTipo2) throws FileNotFoundException, Exception{
 	
 
 String head =

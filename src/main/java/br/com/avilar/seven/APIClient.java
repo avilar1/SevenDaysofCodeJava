@@ -8,7 +8,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 
-public abstract class APIClient implements JsonParser{
+public abstract class APIClient{
 	public static String ApiCliente(String key, String urlApi) throws IOException, InterruptedException, URISyntaxException {
 
 		if (key == null)

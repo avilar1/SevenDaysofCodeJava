@@ -1,6 +1,7 @@
 package br.com.avilar.seven;
 
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -10,6 +11,8 @@ public class TopList{
 	public static void main(String[] args) throws URISyntaxException, Exception {
 		
 		String key = args[0];
+		
+		
 		String urlApi = "https://imdb-api.com/en/API/Top250Movies/<apiKey>";
 		String urlApi2 = "https://imdb-api.com/en/API/Top250TVs/<apiKey>";
 		
@@ -19,26 +22,22 @@ public class TopList{
 	    		   //List<String> listaInteira = parseListaInteira(corpo);
 	    		   
 	    		   //System.out.println(listaInteira.get(0));
-	    		   
-	    		   List<String> titulos = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo, 2);
-	    		   List<String> urlImages = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo, 5);
-	    		   List<String> notas = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo, 7);
-	    		   List<String> ano = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo, 4);
-	    		   List<String> ranking = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo, 1);
-	    		   
-	    		   List<String> titulos2 = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo2, 2);
-	    		   List<String> urlImages2 = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo2, 5);
-	    		   List<String> notas2 = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo2, 7);
-	    		   List<String> ano2 = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo2, 4);
-	    		   List<String> ranking2 = FiltrarOsAtributos.filtraOsAtributosPelaLocalizacao(corpo2, 1);
-	    		   
-	    		   List<Tipo> detalhesTipo = PassarDetalhesCadaTipo.passarDetalhesCadaTipo(titulos, urlImages, notas, ano, ranking);
-	    		   List<Tipo> detalhesTipo2 = PassarDetalhesCadaTipo.passarDetalhesCadaTipo(titulos2, urlImages2, notas2, ano2, ranking2);
-	    		   
+					int[] arr1 = {2, 5, 7, 4, 1};
+					ArrayList<Integer> arrList = new ArrayList<>();
+					for(int i=0; i<arr1.length; i++) {
+						arrList.add(arr1[i]);
+					}
+					
+					List<List<String>> geral = FiltrarOsAtributos.filtraOsAtributosList(corpo, arrList);
+					List<List<String>> geral2 = FiltrarOsAtributos.filtraOsAtributosList(corpo2, arrList);
+					
+					
+	    		   List<Tipo> detalhesTipo3 = PassarDetalhesCadaTipo.passarDetalhesCada(geral, TipoDeConteudo.Filmes);
+	    		   List<Tipo> detalhesTipo4 = PassarDetalhesCadaTipo.passarDetalhesCada(geral2, TipoDeConteudo.TVShow);
 	    		      		   
 	    		   //ImprimeLista.imprimeLista(titulos, detalhesFilmes);
 	    		   
-	    		   HTMLGenerator.htmlTipos(titulos, detalhesTipo, detalhesTipo2);
+	    		   HTMLGenerator.htmlTipos(detalhesTipo3, detalhesTipo4);
 	    		   	}
 	
 	@SuppressWarnings("unused")

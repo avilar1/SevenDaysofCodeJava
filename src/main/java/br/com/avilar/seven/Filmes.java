@@ -9,28 +9,6 @@ public class Filmes extends Tipo implements Content{
 		
 	}
 
-	public String getTitulo() {
-		return titulo;
-	}
-	
-	public String getUrlImagem() {
-		return urlImagem;
-	}
-	
-	public String getNota() {
-		return nota;
-	}
-	
-	public String getAno() {
-		return ano;
-	}
-	
-	public String getRanking() {
-		return ranking;
-	}
-	
-	
-
 
 	
 }
