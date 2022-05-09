@@ -1,12 +1,11 @@
 package br.com.avilar.seven;
 
-public class Filmes extends Tipo implements Content{
+public class TVShow extends Tipo implements Content{
+
 	
-	
-	
-	public Filmes(String titulo, String urlImagem, String nota, String ano, String ranking) {
+	public TVShow(String titulo, String urlImagem, String nota, String ano, String ranking) {
 		super(titulo, urlImagem, nota, ano, ranking);
-		
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getTitulo() {
@@ -28,9 +27,4 @@ public class Filmes extends Tipo implements Content{
 	public String getRanking() {
 		return ranking;
 	}
-	
-	
-
-
-	
 }

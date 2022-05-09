@@ -8,7 +8,7 @@ import java.util.List;
 
 public class HTMLGenerator{
 
-public static void GeradordeFilmes(String html) throws FileNotFoundException, Exception {
+public static void GeradordeHtml(String html) throws FileNotFoundException, Exception {
 	
 	PrintWriter gerarHtml = new PrintWriter(new File("topFilmes.html"));
 	
@@ -17,9 +17,8 @@ public static void GeradordeFilmes(String html) throws FileNotFoundException, Ex
 	gerarHtml.close();
 }
 
-public static void htmlFilmes(List<String> titulos, List<Filmes> detalhesFilmes) throws FileNotFoundException, Exception{
+public static void htmlTipos(List<String> titulos, List<Tipo> detalhesTipo, List<Tipo> detalhesTipo2) throws FileNotFoundException, Exception{
 	
-List<String> card = new ArrayList<>();
 
 String head =
 		"""
@@ -30,35 +29,16 @@ String head =
 				+ "integrity=\"sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm\" crossorigin=\"anonymous\">					
 		</head>
 		""";
-		
- for (int i = 0; i < titulos.size(); i++) {
-	card.add("""
-					<div class="card" style="width: 13rem; margin: 1rem; display: inline-block;">
-					<img class="card-img-top" src="
-					"""+ detalhesFilmes.get(i).getUrlImagem() + """
-					" alt="Card image cap">
-					<div class="card-body">
-					<h5 class="card-title" style="nowrap;overflow-x: scroll; overflow-y: hidden;">
-					""" + detalhesFilmes.get(i).getTitulo() + """
-							</h5>
-							<p class="card-text">""" + detalhesFilmes.get(i).getAno() + """
-							</p>
-							</div>
-							<ul class="list-group list-group-flush">
-							<li class="list-group-item">
-							nota: """ + detalhesFilmes.get(i).getNota() + """
-									</li>
-							<li class="list-group-item">
-							ranking: """ + detalhesFilmes.get(i).getRanking() + """
-									</li>		
-									</ul>
-									</div>
-									""");
-}
+	
 
 String cardTotal = "";
-for (int i = 0; i<card.size(); i++) {
-	cardTotal = cardTotal + card.get(i);
+for (int i = 0; i<cardieiro(detalhesTipo).size(); i++) {
+	cardTotal = cardTotal + cardieiro(detalhesTipo).get(i);
+}
+
+String cardTotal2 = "";
+for (int i = 0; i<cardieiro(detalhesTipo2).size(); i++) {
+	cardTotal2 = cardTotal2 + cardieiro(detalhesTipo2).get(i);
 }
 
 String html =
@@ -66,17 +46,51 @@ String html =
 				<!DOCTYPE html>
 					<html lang="pt-br">"""+ head + """
 				<body>
-						<main style="white-space: nowrap;overflow-x: scroll; overflow-y: hidden;">
-				""" + cardTotal + """
-				</main>
+						<article style="white-space: nowrap;overflow-x: scroll; overflow-y: hidden;">
+				<h2>Top Maiores Filmes:</h2> </br>""" + cardTotal +"""
+				</article>
+						<article style="white-space: nowrap;overflow-x: scroll; overflow-y: hidden;">
+				</br><h2>Top Maiores Series de TV:</h2> </br>""" + cardTotal2 +"""
+				</article>
 				</body>
 				</html>
 				""";
 
-GeradordeFilmes(html);
+GeradordeHtml(html);
 System.out.println("feito");
 }
 
+
+public static List<String> cardieiro(List<Tipo> detalhes) {
+	
+	List<String> card = new ArrayList<>();
+	for (int i = 0; i < detalhes.size(); i++) {
+		card.add("""
+						<div class="card" style="width: 13rem; margin: 1rem; display: inline-block;">
+						<img class="card-img-top" src="
+						"""+ detalhes.get(i).getUrlImagem() + """
+						" alt="Card image cap" loading="lazy">
+						<div class="card-body">
+						<h5 class="card-title" style="nowrap;overflow-x: scroll; overflow-y: hidden;">
+						""" + detalhes.get(i).getTitulo() + """
+								</h5>
+								<p class="card-text">""" + detalhes.get(i).getAno() + """
+								</p>
+								</div>
+								<ul class="list-group list-group-flush">
+								<li class="list-group-item">
+								nota: """ + detalhes.get(i).getNota() + """
+										</li>
+								<li class="list-group-item">
+								ranking: """ + detalhes.get(i).getRanking() + """
+										</li>		
+										</ul>
+										</div>
+										""");
+	}
+	
+	return card;
+}
 
 }
 
