@@ -17,7 +17,7 @@ public static void GeradordeHtml(String html) throws FileNotFoundException, Exce
 	gerarHtml.close();
 }
 
-public static void htmlTipos(List<Tipo> detalhesTipo, List<Tipo> detalhesTipo2) throws FileNotFoundException, Exception{
+public static void htmlTipos(List<Tipo> detalhesTipoFilme, List<Tipo> detalhesTipoSerie, List<Tipo> mixed) throws FileNotFoundException, Exception{
 	
 
 String head =
@@ -31,14 +31,19 @@ String head =
 		""";
 	
 
-String cardTotal = "";
-for (int i = 0; i<cardieiro(detalhesTipo).size(); i++) {
-	cardTotal = cardTotal + cardieiro(detalhesTipo).get(i);
+String cardTotal1 = "";
+for (int i = 0; i<cardieiro(detalhesTipoFilme).size(); i++) {
+	cardTotal1 = cardTotal1 + cardieiro(detalhesTipoFilme).get(i);
 }
 
 String cardTotal2 = "";
-for (int i = 0; i<cardieiro(detalhesTipo2).size(); i++) {
-	cardTotal2 = cardTotal2 + cardieiro(detalhesTipo2).get(i);
+for (int i = 0; i<cardieiro(detalhesTipoSerie).size(); i++) {
+	cardTotal2 = cardTotal2 + cardieiro(detalhesTipoSerie).get(i);
+}
+
+String cardTotalMixed = "";
+for (int i = 0; i<cardieiro(detalhesTipoSerie).size(); i++) {
+	cardTotalMixed = cardTotalMixed + cardieiro(mixed).get(i);
 }
 
 String html =
@@ -47,10 +52,16 @@ String html =
 					<html lang="pt-br">"""+ head + """
 				<body>
 						<article style="white-space: nowrap;overflow-x: scroll; overflow-y: hidden;">
-				<h2>Top Maiores Filmes:</h2> </br>""" + cardTotal +"""
+				<h2>Top Maiores Filmes:</h2> </br>
+				<p>Ordenado por nome</p>""" + cardTotal1 +"""
 				</article>
 						<article style="white-space: nowrap;overflow-x: scroll; overflow-y: hidden;">
-				</br><h2>Top Maiores Series de TV:</h2> </br>""" + cardTotal2 +"""
+				</br><h2>Top Maiores Series de TV:</h2> </br>
+				<p>Ordenado por ano</p>""" + cardTotal2 +"""
+				</article>
+				<article style="white-space: nowrap;overflow-x: scroll; overflow-y: hidden;">
+				</br><h2>Todos: </h2> </br>
+				<p>Ordenado por nota</p>""" + cardTotalMixed +"""
 				</article>
 				</body>
 				</html>
@@ -83,6 +94,9 @@ public static List<String> cardieiro(List<Tipo> detalhes) {
 										</li>
 								<li class="list-group-item">
 								ranking: """ + detalhes.get(i).getRanking() + """
+										</li>
+								<li class="list-group-item">
+								""" + detalhes.get(i).tipo() + """
 										</li>		
 										</ul>
 										</div>
@@ -91,6 +105,7 @@ public static List<String> cardieiro(List<Tipo> detalhes) {
 	
 	return card;
 }
+
 
 }
 

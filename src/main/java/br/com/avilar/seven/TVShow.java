@@ -7,4 +7,16 @@ public class TVShow extends Tipo implements Content{
 		super(titulo, urlImagem, nota, ano, ranking);
 		// TODO Auto-generated constructor stub
 	}
+
+
+	@Override
+	public int compareTo(Tipo o) {
+		return this.getAno().compareTo(o.getAno());
+	}
+
+	@Override
+	public String tipo() {
+		
+		return "Serie";
+	}
 }

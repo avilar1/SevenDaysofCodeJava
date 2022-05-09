@@ -1,6 +1,8 @@
 package br.com.avilar.seven;
 
-public abstract class Tipo implements Content{
+
+
+public abstract class Tipo implements Content, Comparable<Tipo>{
 	public String titulo;
 	public String urlImagem;
 	public String nota;
@@ -33,5 +35,9 @@ public abstract class Tipo implements Content{
 	
 	public String getRanking() {
 		return ranking;
+	}
+	
+	public int compareTo(Content outro) {
+	    return this.getNota().compareTo(outro.getNota());
 	}
 }

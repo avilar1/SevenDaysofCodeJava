@@ -6,4 +6,5 @@ public interface Content {
     String getNota();
     String getAno();
     String getRanking();
+    String tipo();
 }
