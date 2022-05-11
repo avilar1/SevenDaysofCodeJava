@@ -3,11 +3,11 @@ package br.com.avilar.seven;
 
 
 public abstract class Tipo implements Content, Comparable<Tipo>{
-	public String titulo;
-	public String urlImagem;
-	public String nota;
-	public String ano;
-	public String ranking;
+	private String titulo;
+	private String urlImagem;
+	private String nota;
+	private String ano;
+	private String ranking;
 	
 	public Tipo(String titulo, String urlImagem, String nota, String ano, String ranking) {
 

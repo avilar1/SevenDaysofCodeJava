@@ -72,7 +72,7 @@ System.out.println("feito");
 }
 
 
-public static List<String> cardieiro(List<Tipo> detalhes) {
+private static List<String> cardieiro(List<Tipo> detalhes) {
 	
 	List<String> card = new ArrayList<>();
 	for (int i = 0; i < detalhes.size(); i++) {
